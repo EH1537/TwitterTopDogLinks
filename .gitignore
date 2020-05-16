@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+#secrets and keys you use
+server/secretConfig/secretsAndKeys
