@@ -4,7 +4,7 @@ const Twitter = require('twit');
 const secretsAndKeys = require("../secretConfig/secretsAndKeys")
 const models = require("../models/userModel");
 const crypto = require('crypto');
-const clientHomeURL = `http://localhost:${secretsAndKeys.PROXY_PORT}`;
+const clientHomeURL = secretsAndKeys.PROXY_PORT; //this is a fullsized url (for example, http://localhost:3434)
 
 function decrypt(text) {
   let textParts = text.split(':');
