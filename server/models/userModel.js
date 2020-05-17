@@ -19,13 +19,14 @@ const userSchema = new Schema({
   screenName: String,
   twitterId: String,
   profileImageUrl: String,
+  createdAt: { type: Date, expires: '60m', default: Date.now },
   t: String,
   ts: String,
 });
 
 const tweetsSchema = new Schema({
   twitterId: String,
-  createdAt: { type: Date, expires: 3600, default: Date.now },
+  createdAt: { type: Date, expires: '60m', default: Date.now },
   topTweets: Object,
 });
 

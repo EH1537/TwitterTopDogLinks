@@ -16,7 +16,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
     host: 'localhost',
-    port: 3437,
+    port: 3434,
     // match the output path
     contentBase: path.resolve(__dirname, 'dist'),
     // enable HMR on the devServer
@@ -28,25 +28,30 @@ module.exports = {
 
     inline: true,
 
-    writeToDisk: true,
+    // writeToDisk: true,
 
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: { 'Access-Control-Allow-Origin': 'http://localhost:3434' },
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:3434',
+      'Access-Control-Allow-Headers': 'http://localhost:3434',
+    },
+
     /**
      * proxy is required in order to make api calls to
      * express server while using hot-reload webpack server
      * routes api fetch requests from localhost:8080/api/*
      * to localhost:3437/api/* 
      */
-    // proxy: {
+    proxy: {
     //   '/api/**': {
     //     target: 'http://localhost:3437/',
     //     secure: false,
     //   },
-    //   '/statics/**': {
-    //     target: 'http://localhost:3437/',
-    //     secure: false,
-    //   },
-    // },
+      '/statics/**': {
+        target: 'http://localhost:3437/',
+        secure: false,
+      },
+    },
   },
   module: {
     rules: [

@@ -23,12 +23,13 @@ export default class HomePage extends Component {
     this.filterByHash = this.filterByHash.bind(this);
     this.resetFilters = this.resetFilters.bind(this)
     this.filterByTime = this.filterByTime.bind(this)
+    this.filterByLocation = this.filterByLocation.bind(this)
     this.displayModal = this.displayModal.bind(this)
-    // this.filterTweets = this.filterTweets(this);
   }
 
   handleNotAuthenticated() {
     this.setState({ authenticated: false });
+    return
   };
 
   componentDidMount() {
@@ -84,6 +85,7 @@ export default class HomePage extends Component {
         console.log(error)
         this.setState({ tweetsGot: false })
       });
+    return
   }
 
   filterByTime(tweets) {
@@ -133,17 +135,22 @@ export default class HomePage extends Component {
       topUsers: topUsers,
       topDomains: topDomains
     })
+    return
   }
 
   filterByHash() {
-    var person = prompt("Enter a hashtag", "#UnexpectedlyGood").toLowerCase();
-    if (person[0] == "#") {
-      person = person.slice(1)
+    let hashT = prompt("Enter a hashtag", "#UnexpectedlyGood");
+    if (!hashT || hashT == null) {
+      return
+    }
+    hashT = hashT.toLowerCase();
+    if (hashT[0] == "#") {
+      hashT = hashT.slice(1)
     }
     let filteredHashTweets = this.state.tweetsFromDB.filter((tweet) => {
       if (tweet.entities.hashtags.length) {
         for (let hashtagObj of tweet.entities.hashtags) {
-          if (hashtagObj.text.toLowerCase() == person) {
+          if (hashtagObj.text.toLowerCase() == hashT) {
             return tweet
           }
         }
@@ -151,20 +158,67 @@ export default class HomePage extends Component {
     })
     console.log(filteredHashTweets)
     this.filterByTime(filteredHashTweets)
-    console.log(person)
+    console.log(hashT)
+    return
+  }
+
+  filterByLocation() {
+    let location = prompt("Enter a Location", "Cleveland, OH");
+    let commaId = 0
+    if (!location || location == null) {
+      return
+    }
+    location = location.toLowerCase();
+    for (let i = 0; i < location.length; i++) {
+      if (location[i] == ',') {
+        commaId = i
+        location = location.slice(0, commaId)
+        break
+      }
+    }
+    //this a very rudimentary search, requires that you get the spelling right and fill out all the town name up to the , before the state
+    let filteredLocationTweets = this.state.tweetsFromDB.filter((tweet) => {
+      if (tweet.user.location) {
+        let searchLoc = tweet.user.location.toLowerCase()
+        if (commaId == 0) {
+          for (let i = 0; i < searchLoc.length; i++) {
+            if (searchLoc[i] == ',') {
+              commaId = i
+              searchLoc = searchLoc.slice(0, commaId)
+              console.log(searchLoc)
+              breakm
+            }
+          }
+          if (location == searchLoc) {
+            return tweet
+          }
+          else {
+            commaId = 0
+          }
+        }
+        else {
+          if (location == searchLoc.slice(0, commaId)) {
+            return tweet
+          }
+        }
+      }
+    })
+    console.log(filteredLocationTweets)
+    this.filterByTime(filteredLocationTweets)
     return
   }
 
 
-
   resetFilters() {
     this.filterByTime(this.state.tweetsFromDB)
+    return
   }
 
   displayModal() {
     let renderModal = !this.state.renderModal
     console.log("rendering modal")
     this.setState({ renderModal: renderModal })
+    return
   }
 
   render() {
@@ -176,19 +230,26 @@ export default class HomePage extends Component {
         />
         <div>
           {!this.state.authenticated ? (
-            <h1>Welcome!</h1>
+            <h1>Please Sign In</h1>
           ) : (
               <div>
-                <h1>You have login succcessfully!</h1>
-                <button onClick={() => this.getTweets()}>Get Tweets</button>
-                <button onClick={() => this.filterByHash()}>Prompt for HashTag</button>
-                <button onClick={() => this.resetFilters()}>Reset Filters</button>
                 <h2>Welcome {this.state.user.name}!</h2>
-                {this.state.tweetsGot && 
-                <div>
-                  <button onClick={() => this.displayModal()}>Display Top Data</button>
-                  <TweetDisplay filteredTweets={this.state.filteredTweets}/>
-                  </div>}
+                <div className="outerMenu">
+
+                  {!this.state.tweetsGot && <button onClick={() => this.getTweets()}>Get Tweets</button>}
+                  <br></br>
+                  {this.state.tweetsGot &&
+                    <div className="tweetBlock">
+                      <div className="innerMenu">
+                        <button onClick={() => this.filterByHash()}>Filter By Hashtag</button>
+                        <button onClick={() => this.filterByLocation()}>Filter By Location</button>
+                        <button onClick={() => this.displayModal()}>Display Top Data</button>
+                        <button onClick={() => this.resetFilters()}>Reset Filters</button>
+                      </div>
+
+                      <TweetDisplay filteredTweets={this.state.filteredTweets} />
+                    </div>}
+                </div>
               </div>
             )}
         </div>
@@ -196,7 +257,7 @@ export default class HomePage extends Component {
           topDomains={this.state.topDomains}
           topUsers={this.state.topUsers}
           renderModal={this.state.renderModal}
-          displayModal = {this.displayModal}
+          displayModal={this.displayModal}
         />
       </div >
     );

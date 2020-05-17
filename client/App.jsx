@@ -5,7 +5,7 @@ class App extends Component {
   render(props) {
 
     return (
-      <div id="app">Tester Dev
+      <div id="app">
         <MainPage/>
       </div>
     )

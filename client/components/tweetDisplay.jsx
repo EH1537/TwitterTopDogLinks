@@ -11,13 +11,13 @@ const TweetDisplay = (props) => {
   }
 
   let filteredTweets = props.filteredTweets.map((tweet, idx) => {
-    return <Tweet id={idx} key={idx} data={tweet} />
+    return <Tweet id={`tweetID${idx}`} key={`tweet${idx}`} data={tweet} />
   })
 
   // function sortBy(category)
 
   return (
-    <div> 
+    <div className = "tweetDisplay"> 
       {filteredTweets}
     </div>
   );
