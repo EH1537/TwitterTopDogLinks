@@ -29,7 +29,6 @@ const tweetsSchema = new Schema({
   topTweets: Object,
 });
 
-// creats a model for the 'species' collection that will be part of the export
 const User = mongoose.model('user', userSchema);
 const Tweets = mongoose.model('tweets', tweetsSchema);
 

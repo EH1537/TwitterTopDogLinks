@@ -104,4 +104,4 @@ dist
 .tern-port
 
 #secrets and keys you use
-server/secretConfig/secretsAndKeys
+server/secretConfig/secretsAndKeys.js

@@ -10,8 +10,7 @@ const TweetDisplay = (props) => {
     return datum;
   }
 
-  let displayTweet = props.tweetsArr.map((tweet, idx) => {
-    console.log(idx)
+  let filteredTweets = props.filteredTweets.map((tweet, idx) => {
     return <Tweet id={idx} key={idx} data={tweet} />
   })
 
@@ -19,7 +18,7 @@ const TweetDisplay = (props) => {
 
   return (
     <div> 
-      {displayTweet}
+      {filteredTweets}
     </div>
   );
 }

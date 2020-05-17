@@ -19,9 +19,9 @@ export default class Header extends Component {
     return (
       <ul className="menu">
         {this.props.authenticated ? (
-          <li onClick={() => handleLogoutClick()}>LOGOUTSS</li>
+          <button onClick={() => handleLogoutClick()}>Log Out</button>
         ) : (
-            <button onClick={() => handleSignInClick()}>Login</button>
+            <button onClick={() => handleSignInClick()}>Log In</button>
 
           )}
       </ul>

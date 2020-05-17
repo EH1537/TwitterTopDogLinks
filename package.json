@@ -20,7 +20,6 @@
     "html-webpack-plugin": "^4.3.0",
     "mongoose": "^5.9.14",
     "passport": "^0.4.1",
-    "passport-oauth1": "^1.1.0",
     "passport-twitter": "^1.0.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
