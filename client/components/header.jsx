@@ -17,19 +17,18 @@ export default class Header extends Component {
       this.props.handleNotAuthenticated();
     };
     return (
-      <ul className="menu">
-        <a href='auth/twitter'>Log In with Twitter!!!!!!!!!!!!!!!!!!!!!!!!!!</a>
+      <div className="menu">
         {this.props.authenticated ? (
-          <button onClick={() => handleLogoutClick()}>Log Out</button>
+          <button className = "logInOrOut" onClick={() => handleLogoutClick()}>Log Out</button>
           
         ) : (
             <div id="disclaimer">
-              <button onClick={() => handleSignInClick()}>Log In</button>
+              <button className = "logInOrOut" onClick={() => handleSignInClick()}>Log In</button>
               <h1>Hello, and Welcome to Twitter Top Dogs</h1>
               <h2>By logging in with Twitter, you grant access for this app to simply acquire and read tweets from your homepage</h2>
             </div>
           )}
-      </ul>
+      </div>
     );
   }
 
