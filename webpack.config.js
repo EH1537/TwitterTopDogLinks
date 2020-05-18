@@ -29,8 +29,6 @@ module.exports = {
     inline: true,
 
     // writeToDisk: true,
-
-    headers: { 'Access-Control-Allow-Origin': 'http://localhost:3434' },
     headers: {
       'Access-Control-Allow-Origin': 'http://localhost:3434',
       'Access-Control-Allow-Headers': 'http://localhost:3434',
@@ -43,14 +41,18 @@ module.exports = {
      * to localhost:3437/api/* 
      */
     proxy: {
-    //   '/api/**': {
-    //     target: 'http://localhost:3437/',
-    //     secure: false,
-    //   },
+      //   '/api/**': {
+      //     target: 'http://localhost:3437/',
+      //     secure: false,
+      //   },
       '/statics/**': {
         target: 'http://localhost:3437/',
         secure: false,
       },
+      '/auth': {
+        target: 'http://localhost:3437',
+        secure: false,
+      }
     },
   },
   module: {

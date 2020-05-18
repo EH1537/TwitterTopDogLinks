@@ -34,7 +34,7 @@ export default class HomePage extends Component {
 
   componentDidMount() {
     // Fetch does not send cookies. So add credentials: 'include'
-    fetch("http://localhost:3437/auth/login/success", {
+    fetch("auth/login/success", {
       method: "GET",
       credentials: "include",
       headers: {
@@ -59,7 +59,7 @@ export default class HomePage extends Component {
   }
 
   getTweets() {
-    fetch("http://localhost:3437/auth/tweets", {
+    fetch("auth/tweets", {
       method: "GET",
       credentials: "include",
       headers: {
