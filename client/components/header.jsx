@@ -7,13 +7,13 @@ export default class Header extends Component {
       // Authenticate using via passport api in the backend
       // Open Twitter login page
       // Upon successful login, a cookie session will be stored in the client
-      window.open(`http://localhost:3437/auth/twitter`, "_self");
+      window.open(`https://topdogtwitterlinks.herokuapp.com/auth/twitter`, "_self");
     };
 
     let handleLogoutClick = () => {
       // Logout using Twitter passport api
       // Set authenticated state to false in the HomePage
-      window.open("http://localhost:3437/auth/logout", "_self");
+      window.open("https://topdogtwitterlinks.herokuapp.com/auth/logout", "_self");
       this.props.handleNotAuthenticated();
     };
     return (
