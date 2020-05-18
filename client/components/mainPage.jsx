@@ -23,6 +23,7 @@ export default class HomePage extends Component {
     this.filterByHash = this.filterByHash.bind(this);
     this.resetFilters = this.resetFilters.bind(this)
     this.filterByTime = this.filterByTime.bind(this)
+    this.filterByName = this.filterByName.bind(this)
     this.filterByLocation = this.filterByLocation.bind(this)
     this.displayModal = this.displayModal.bind(this)
   }
@@ -156,9 +157,7 @@ export default class HomePage extends Component {
         }
       }
     })
-    console.log(filteredHashTweets)
     this.filterByTime(filteredHashTweets)
-    console.log(hashT)
     return
   }
 
@@ -185,8 +184,7 @@ export default class HomePage extends Component {
             if (searchLoc[i] == ',') {
               commaId = i
               searchLoc = searchLoc.slice(0, commaId)
-              console.log(searchLoc)
-              breakm
+              break
             }
           }
           if (location == searchLoc) {
@@ -203,12 +201,24 @@ export default class HomePage extends Component {
         }
       }
     })
-    console.log(filteredLocationTweets)
     this.filterByTime(filteredLocationTweets)
     return
   }
 
-
+  filterByName() {
+    let uName = prompt("Enter a Username", "pcgamer");
+    if (!uName || uName == null) {
+      return
+    }
+    uName = uName.toLowerCase();
+    let filteredNametweets = this.state.tweetsFromDB.filter((tweconoet) => {
+      if (tweet.user.screen_name.toLowerCase() == uName) {
+        return tweet
+      }
+    })
+    this.filterByTime(filteredNametweets)
+    return
+  }
   resetFilters() {
     this.filterByTime(this.state.tweetsFromDB)
     return
@@ -216,7 +226,6 @@ export default class HomePage extends Component {
 
   displayModal() {
     let renderModal = !this.state.renderModal
-    console.log("rendering modal")
     this.setState({ renderModal: renderModal })
     return
   }
@@ -241,12 +250,12 @@ export default class HomePage extends Component {
                   {this.state.tweetsGot &&
                     <div className="tweetBlock">
                       <div className="innerMenu">
+                        <button onClick={() => this.filterByName()}>Filter By Username</button>
                         <button onClick={() => this.filterByHash()}>Filter By Hashtag</button>
                         <button onClick={() => this.filterByLocation()}>Filter By Location</button>
                         <button onClick={() => this.displayModal()}>Display Top Data</button>
                         <button onClick={() => this.resetFilters()}>Reset Filters</button>
                       </div>
-
                       <TweetDisplay filteredTweets={this.state.filteredTweets} />
                     </div>}
                 </div>
@@ -262,6 +271,4 @@ export default class HomePage extends Component {
       </div >
     );
   }
-
-
 }

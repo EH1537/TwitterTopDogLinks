@@ -10,12 +10,6 @@ Clone repo to your own folder, install all dependancies and packages with
 npm install
 ```
 
-To run the program, simply type 
-```bash
-npm start
-```
-and visit the [OAuth](http://localhost:3437)
-
 ## Configuration
 
 Generate a .env and .env.development file at the root directory in order to populate all key variables  is a secretsAndKeys.js folder, these fields **must** be completed on your end for the app to function fully:
@@ -30,7 +24,7 @@ TWITTER_CONSUMER_SECRET=
 TWITTER_ACCESS_TOKEN=
 TWITTER_TOKEN_SECRET=
 PORT=
-PROXYPORT=
+PROXYPORT=>IN DEV MODE THIS IS THE ADDRESS OF THE PROXY SERVER BY WEBPACK (http://localhost:3437), OTHERWISE http://localhost:3437 IN PRODUCTION
 ```
 ## Edditing and working within the app
 
@@ -47,6 +41,11 @@ After you're done, build the bundle with
 npm run build
 ```
 
+To run server in production mode, use the command
+
+```bash
+npm run startdev
+```
 
 ## Usage
 

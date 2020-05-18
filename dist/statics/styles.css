@@ -11,6 +11,9 @@
   .singleTweetInfo {
     flex-basis: 35%;
   }
+  .displayTops {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -38,9 +41,10 @@
   .singleTweetInfo {
     flex-basis: 21%;
   }
+  .displayTops {
+    width: 30%;
+  }
 }
-
-
 
 body {
   background-color: transparent;
@@ -67,6 +71,11 @@ h1 {
 
 h2 {
   text-align: center;
+}
+
+h4 {
+  text-align: center;
+  width: 100%;
 }
 
 button {
@@ -110,6 +119,13 @@ button:hover {
 p {
   margin: 5px 15px 5px 15px;
   font-weight: 350;
+}
+
+.displaytops p {
+  margin: 5px 15px 5px 15px;
+  font-weight: 350;
+  width: 100%;
+  text-align: center;
 }
 
 .tweetBlock {
@@ -189,7 +205,6 @@ p {
   align-items: center;
   border-radius: 5px;
   max-height: 70%;
-  width: 30%;
   margin: 5px;
   padding: 5px;
   background-color: rgb(255, 255, 255, .4);
