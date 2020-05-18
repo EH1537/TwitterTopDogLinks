@@ -18,7 +18,7 @@ export default class Header extends Component {
     };
     return (
       <ul className="menu">
-        <a href='/auth/twitter'>Log In with Twitter!!!!!!!!!!!!!!!!!!!!!!!!!!</a>
+        <a href='auth/twitter'>Log In with Twitter!!!!!!!!!!!!!!!!!!!!!!!!!!</a>
         {this.props.authenticated ? (
           <button onClick={() => handleLogoutClick()}>Log Out</button>
           
