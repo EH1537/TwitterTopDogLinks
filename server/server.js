@@ -22,6 +22,7 @@ const PORT = secretsAndKeys.PORT
 
 console.log("node env file", process.env.TESTER)
 
+console.log(secretsAndKeys.PROXY_PORT)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
